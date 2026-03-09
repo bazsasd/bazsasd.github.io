@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horváth Balázs | IT Specialist</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0f172a; color: #e2e8f0; line-height: 1.6; }
+        a { color: #38bdf8; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        header { padding: 60px 20px 40px; text-align: center; border-bottom: 1px solid #1e293b; }
+        header h1 { font-size: 2.5rem; font-weight: 700; color: #f8fafc; }
+        header .title { color: #38bdf8; font-size: 1.1rem; margin: 8px 0 16px; }
+        header .links a { margin: 0 12px; color: #94a3b8; font-size: 0.95rem; }
+        header .links a:hover { color: #38bdf8; }
+
+        section { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        h2 { font-size: 1.4rem; color: #38bdf8; margin-bottom: 20px; padding-bottom: 8px; border-bottom: 1px solid #1e293b; }
+
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+        .skill-tag { background: #1e293b; padding: 8px 14px; border-radius: 6px; text-align: center; font-size: 0.9rem; color: #94a3b8; border: 1px solid #334155; }
+        .skill-tag:hover { border-color: #38bdf8; color: #e2e8f0; }
+
+        .project-card { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 20px; margin-bottom: 16px; transition: border-color 0.2s; }
+        .project-card:hover { border-color: #38bdf8; }
+        .project-card h3 { color: #f1f5f9; margin-bottom: 6px; }
+        .project-card p { color: #94a3b8; font-size: 0.95rem; margin-bottom: 10px; }
+        .project-card .tags span { background: #0f172a; color: #38bdf8; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 6px; }
+
+        .experience-item { margin-bottom: 24px; }
+        .experience-item .meta { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+        .experience-item h3 { color: #f1f5f9; }
+        .experience-item .period { color: #64748b; font-size: 0.9rem; }
+        .experience-item .company { color: #38bdf8; font-size: 0.95rem; margin: 2px 0 8px; }
+        .experience-item ul { color: #94a3b8; padding-left: 20px; font-size: 0.95rem; }
+        .experience-item ul li { margin-bottom: 4px; }
+
+        footer { text-align: center; padding: 30px; color: #475569; font-size: 0.85rem; border-top: 1px solid #1e293b; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Horváth Balázs</h1>
+    <p class="title">IT Specialist · Systems & Network Administration</p>
+    <div class="links">
+        <a href="https://github.com/bazsasd">GitHub</a>
+        <a href="mailto:bazsasd@gmail.com">Email</a>
+        <a href="https://linkedin.com/in/bazsasd">LinkedIn</a>
+    </div>
+</header>
+
+<section>
+    <h2>Skills</h2>
+    <div class="skills-grid">
+        <div class="skill-tag">Linux</div>
+        <div class="skill-tag">Docker</div>
+        <div class="skill-tag">Networking</div>
+        <div class="skill-tag">Python</div>
+        <div class="skill-tag">Bash</div>
+        <div class="skill-tag">Proxmox</div>
+        <div class="skill-tag">Git</div>
+        <div class="skill-tag">iptables</div>
+        <div class="skill-tag">Monitoring</div>
+        <div class="skill-tag">Automation</div>
+    </div>
+</section>
+
+<section>
+    <h2>Projects</h2>
+
+    <div class="project-card">
+        <h3><a href="https://github.com/bazsasd/homelab">homelab</a></h3>
+        <p>Home lab infrastructure setup with Proxmox virtualization, Docker containers, and self-hosted services.</p>
+        <div class="tags"><span>Proxmox</span><span>Docker</span><span>Networking</span></div>
+    </div>
+
+    <div class="project-card">
+        <h3><a href="https://github.com/bazsasd/scripts">scripts</a></h3>
+        <p>Collection of Python and Bash automation scripts for system administration tasks.</p>
+        <div class="tags"><span>Python</span><span>Bash</span><span>Automation</span></div>
+    </div>
+
+    <div class="project-card">
+        <h3><a href="https://github.com/bazsasd/dotfiles">dotfiles</a></h3>
+        <p>Personal shell and editor configuration files for a productive terminal workflow.</p>
+        <div class="tags"><span>Zsh</span><span>Vim</span><span>tmux</span></div>
+    </div>
+
+    <div class="project-card">
+        <h3><a href="https://github.com/bazsasd/network-notes">network-notes</a></h3>
+        <p>Networking study notes: OSI model, subnetting, protocols, and CLI cheatsheets.</p>
+        <div class="tags"><span>Networking</span><span>TCP/IP</span><span>Notes</span></div>
+    </div>
+</section>
+
+<section>
+    <h2>Experience</h2>
+
+    <div class="experience-item">
+        <div class="meta">
+            <h3>IT Specialist</h3>
+            <span class="period">2023 – Present</span>
+        </div>
+        <p class="company">Current Employer</p>
+        <ul>
+            <li>System administration and user support</li>
+            <li>Network configuration and troubleshooting</li>
+            <li>Automation of repetitive IT tasks</li>
+        </ul>
+    </div>
+</section>
+
+<footer>
+    <p>© 2024 Horváth Balázs · Built with plain HTML</p>
+</footer>
+
+</body>
+</html>
