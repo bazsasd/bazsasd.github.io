@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +15,27 @@
         header .title { color: #38bdf8; font-size: 1.1rem; margin: 8px 0 16px; }
         header .links a { margin: 0 12px; color: #94a3b8; font-size: 0.95rem; }
         header .links a:hover { color: #38bdf8; }
+
+        .lang-switcher {
+            position: fixed;
+            top: 16px;
+            right: 20px;
+            display: flex;
+            gap: 6px;
+            z-index: 100;
+        }
+        .lang-btn {
+            background: #1e293b;
+            color: #94a3b8;
+            border: 1px solid #334155;
+            padding: 4px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.15s;
+        }
+        .lang-btn:hover { border-color: #38bdf8; color: #e2e8f0; }
+        .lang-btn.active { background: #38bdf8; color: #0f172a; border-color: #38bdf8; font-weight: 600; }
 
         section { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
         h2 { font-size: 1.4rem; color: #38bdf8; margin-bottom: 20px; padding-bottom: 8px; border-bottom: 1px solid #1e293b; }
@@ -42,9 +63,15 @@
 </head>
 <body>
 
+<div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('hu')">HU</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('de')">DE</button>
+</div>
+
 <header>
     <h1>Horváth Balázs</h1>
-    <p class="title">IT Specialist · Systems & Network Administration</p>
+    <p class="title" id="subtitle"></p>
     <div class="links">
         <a href="https://github.com/bazsasd">GitHub</a>
         <a href="mailto:balazshorvath20030802@gmail.com">Email</a>
@@ -53,7 +80,7 @@
 </header>
 
 <section>
-    <h2>Skills</h2>
+    <h2 id="skills-title"></h2>
     <div class="skills-grid">
         <div class="skill-tag">Linux</div>
         <div class="skill-tag">Docker</div>
@@ -65,57 +92,150 @@
         <div class="skill-tag">iptables</div>
         <div class="skill-tag">Monitoring</div>
         <div class="skill-tag">Automation</div>
+        <div class="skill-tag">PLC</div>
+        <div class="skill-tag">SCADA</div>
     </div>
 </section>
 
 <section>
-    <h2>Projects</h2>
+    <h2 id="projects-title"></h2>
 
     <div class="project-card">
         <h3><a href="https://github.com/bazsasd/homelab">homelab</a></h3>
-        <p>Home lab infrastructure setup with Proxmox virtualization, Docker containers, and self-hosted services.</p>
+        <p id="proj-homelab"></p>
         <div class="tags"><span>Proxmox</span><span>Docker</span><span>Networking</span></div>
     </div>
 
     <div class="project-card">
         <h3><a href="https://github.com/bazsasd/scripts">scripts</a></h3>
-        <p>Collection of Python and Bash automation scripts for system administration tasks.</p>
+        <p id="proj-scripts"></p>
         <div class="tags"><span>Python</span><span>Bash</span><span>Automation</span></div>
     </div>
 
     <div class="project-card">
         <h3><a href="https://github.com/bazsasd/dotfiles">dotfiles</a></h3>
-        <p>Personal shell and editor configuration files for a productive terminal workflow.</p>
+        <p id="proj-dotfiles"></p>
         <div class="tags"><span>Zsh</span><span>Vim</span><span>tmux</span></div>
     </div>
 
     <div class="project-card">
         <h3><a href="https://github.com/bazsasd/network-notes">network-notes</a></h3>
-        <p>Networking study notes: OSI model, subnetting, protocols, and CLI cheatsheets.</p>
+        <p id="proj-network"></p>
         <div class="tags"><span>Networking</span><span>TCP/IP</span><span>Notes</span></div>
     </div>
 </section>
 
 <section>
-    <h2>Experience</h2>
+    <h2 id="experience-title"></h2>
 
     <div class="experience-item">
         <div class="meta">
-            <h3>IT Specialist</h3>
-            <span class="period">2023 – Present</span>
+            <h3 id="job-title"></h3>
+            <span class="period">2023 – <span id="present-label"></span></span>
         </div>
-        <p class="company">Current Employer</p>
-        <ul>
-            <li>System administration and user support</li>
-            <li>Network configuration and troubleshooting</li>
-            <li>Automation of repetitive IT tasks</li>
-        </ul>
+        <p class="company">Nitrogénművek Zrt.</p>
+        <ul id="job-duties"></ul>
     </div>
 </section>
 
 <footer>
-    <p>© 2024 Horváth Balázs · Built with plain HTML</p>
+    <p id="footer-text"></p>
 </footer>
+
+<script>
+const translations = {
+    hu: {
+        subtitle: "IT Szakember · Rendszer- és hálózatüzemeltetés · Üzemeltető műszerész",
+        skillsTitle: "Készségek",
+        projectsTitle: "Projektek",
+        experienceTitle: "Tapasztalat",
+        projHomelab: "Otthoni szerver infrastruktúra Proxmox virtualizációval, Docker konténerekkel és önhosztolt szolgáltatásokkal.",
+        projScripts: "Python és Bash automatizálási scriptek gyűjteménye rendszeradminisztrációs feladatokhoz.",
+        projDotfiles: "Személyes shell és szerkesztő konfigurációs fájlok a hatékony terminálmunkafolyamathoz.",
+        projNetwork: "Hálózati tanulmányi jegyzetek: OSI modell, alhálózatképzés, protokollok és CLI cheatsheet-ek.",
+        jobTitle: "Üzemeltető műszerész",
+        presentLabel: "jelen",
+        jobDuties: [
+            "Ipari műszerek és mérőberendezések üzemeltetése, karbantartása",
+            "PLC rendszerek felügyelete és hibaelhárítása",
+            "Folyamatirányítási rendszerek (SCADA) kezelése",
+            "Megelőző karbantartási feladatok elvégzése",
+            "IT infrastruktúra támogatása és automatizálás"
+        ],
+        footerText: "© 2024 Horváth Balázs · Egyszerű HTML-lel készült"
+    },
+    en: {
+        subtitle: "IT Specialist · Systems & Network Administration · Instrumentation Technician",
+        skillsTitle: "Skills",
+        projectsTitle: "Projects",
+        experienceTitle: "Experience",
+        projHomelab: "Home lab infrastructure with Proxmox virtualization, Docker containers, and self-hosted services.",
+        projScripts: "Collection of Python and Bash automation scripts for system administration tasks.",
+        projDotfiles: "Personal shell and editor configuration files for a productive terminal workflow.",
+        projNetwork: "Networking study notes: OSI model, subnetting, protocols, and CLI cheatsheets.",
+        jobTitle: "Instrumentation Technician",
+        presentLabel: "present",
+        jobDuties: [
+            "Operation and maintenance of industrial instruments and measuring equipment",
+            "Supervision and troubleshooting of PLC systems",
+            "Management of process control systems (SCADA)",
+            "Performing preventive maintenance tasks",
+            "IT infrastructure support and automation"
+        ],
+        footerText: "© 2024 Horváth Balázs · Built with plain HTML"
+    },
+    de: {
+        subtitle: "IT-Spezialist · System- und Netzwerkadministration · Betriebsinstrumenteur",
+        skillsTitle: "Kenntnisse",
+        projectsTitle: "Projekte",
+        experienceTitle: "Berufserfahrung",
+        projHomelab: "Heimlabor-Infrastruktur mit Proxmox-Virtualisierung, Docker-Containern und selbst gehosteten Diensten.",
+        projScripts: "Sammlung von Python- und Bash-Automatisierungsskripten für Systemverwaltungsaufgaben.",
+        projDotfiles: "Persönliche Shell- und Editorkonfigurationsdateien für einen produktiven Terminal-Workflow.",
+        projNetwork: "Netzwerk-Lernnotizen: OSI-Modell, Subnetting, Protokolle und CLI-Cheatsheets.",
+        jobTitle: "Betriebsinstrumenteur",
+        presentLabel: "heute",
+        jobDuties: [
+            "Betrieb und Wartung von Industrieinstrumenten und Messgeräten",
+            "Überwachung und Fehlersuche bei SPS-Systemen",
+            "Bedienung von Prozessleitsystemen (SCADA)",
+            "Durchführung von Wartungsarbeiten zur Vorbeugung",
+            "IT-Infrastrukturunterstützung und Automatisierung"
+        ],
+        footerText: "© 2024 Horváth Balázs · Mit einfachem HTML erstellt"
+    }
+};
+
+function setLang(lang) {
+    const t = translations[lang];
+    document.documentElement.lang = lang;
+
+    document.getElementById('subtitle').textContent = t.subtitle;
+    document.getElementById('skills-title').textContent = t.skillsTitle;
+    document.getElementById('projects-title').textContent = t.projectsTitle;
+    document.getElementById('experience-title').textContent = t.experienceTitle;
+    document.getElementById('proj-homelab').textContent = t.projHomelab;
+    document.getElementById('proj-scripts').textContent = t.projScripts;
+    document.getElementById('proj-dotfiles').textContent = t.projDotfiles;
+    document.getElementById('proj-network').textContent = t.projNetwork;
+    document.getElementById('job-title').textContent = t.jobTitle;
+    document.getElementById('present-label').textContent = t.presentLabel;
+    document.getElementById('footer-text').textContent = t.footerText;
+
+    const duties = document.getElementById('job-duties');
+    duties.innerHTML = t.jobDuties.map(d => `<li>${d}</li>`).join('');
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+    });
+
+    localStorage.setItem('lang', lang);
+}
+
+// Load saved language or default to HU
+const savedLang = localStorage.getItem('lang') || 'hu';
+setLang(savedLang);
+</script>
 
 </body>
 </html>
